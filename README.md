@@ -6,7 +6,7 @@ More things to come as I go along, feel free to suggest ideas in the issue track
 
 ## Installation 
 
-First make sure you've installed [git](http://git-scm.com/downloads), [node.js](http://nodejs.org/download/), and [grunt](http://gruntjs.com/installing-grunt).
+First make sure you've installed [git](http://git-scm.com/downloads), [node.js](http://nodejs.org/download/), and [grunt-cli](http://gruntjs.com/getting-started).
 
 ```
 git clone https://github.com/psychobunny/Manifest.git

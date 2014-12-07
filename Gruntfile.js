@@ -17,14 +17,14 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			css: {
-				files: "source/*.less",
+				files: "source/**/*.less",
 				tasks: ['less'],
 				options: {
 					livereload: true,
 				}
 			},
 			html: {
-				files: ["public/*.html", "public/*.js"],
+				files: ["public/**/*.html", "public/**/*.js"],
 				options: {
 					livereload: true
 				}

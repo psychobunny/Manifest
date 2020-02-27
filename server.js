@@ -65,5 +65,11 @@ var server = app.listen(3000, function() {
 app.use('/static', express.static('static', {}));
 app.get('/*', function(req, res, next) {
 	var route = Object.values(req.params).join('').replace(/\/$/, '');
-	res.render(route, {});
+	const request = require('request');
+
+	request('https://community.nodebb.org/api/' + route, { json: true }, (err, response, body) => {
+		if (err) { return console.log(err); }
+		res.render(route, body);
+	});
+
 });

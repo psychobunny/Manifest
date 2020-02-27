@@ -8,17 +8,17 @@ module.exports = function(grunt) {
 				}
 			},
 		},
-		less: {
+		sass: {
 			development: {
 				files: {
-					"public/bin/manifest.css": "source/manifest.less"
+					"public/bin/manifest.css": "source/manifest.scss"
 				}
 			}
 		},
 		watch: {
 			css: {
-				files: "source/**/*.less",
-				tasks: ['less'],
+				files: "source/**/*.scss",
+				tasks: ['sass'],
 				options: {
 					livereload: true,
 				}
@@ -32,9 +32,9 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-express-server');
 
-	grunt.registerTask('default', ['express:dev', 'less', 'watch']);
+	grunt.registerTask('default', ['express:dev', 'sass', 'watch']);
 };

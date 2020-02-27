@@ -1,13 +1,14 @@
 "use strict";
 
-var express = require('express');
-var winston = require('winston');
-var async = require('async');
-var path = require('path');
-var fs = require('fs');
-var app = express();
-var bodyParser = require('body-parser');
-var Benchpress = require('benchpressjs');
+const express = require('express');
+const winston = require('winston');
+const request = require('request');
+const async = require('async');
+const path = require('path');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const benchpress = require('benchpressjs');
+const app = express();
 
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, {
@@ -16,22 +17,22 @@ winston.add(winston.transports.Console, {
 
 function parse(filepath, options, callback) {
 	async.waterfall([
-		function (next) {
+		(next) => {
 			fs.readFile(filepath, 'utf-8', next);
 		},
-		function (buffer, next) {
-			Benchpress.compileParse(buffer.toString(), options, next);
+		(buffer, next) => {
+			benchpress.compileParse(buffer.toString(), options, next);
 		},
 	], callback);
 }
 
 
-app.engine('tpl', function (filepath, options, callback) {
-	var tpls = ['views/partials/header.tpl', filepath, 'views/partials/footer.tpl'];
-	var sendHtml = '';
+app.engine('tpl', (filepath, options, callback) => {
+	const tpls = ['views/partials/header.tpl', filepath, 'views/partials/footer.tpl'];
+	let sendHtml = '';
 
-	async.eachSeries(tpls, function(tpl, next) {
-		parse(tpl, options, function(err, html) {
+	async.eachSeries(tpls, (tpl, next) => {
+		parse(tpl, options, (err, html) => {
 			if (err) {
 				return next(err);
 			}
@@ -39,7 +40,7 @@ app.engine('tpl', function (filepath, options, callback) {
 			sendHtml = sendHtml + html;
 			next();
 		});
-	}, function(err) {
+	}, (err) => {
 		if (err) {
 			return callback(err);
 		}
@@ -54,22 +55,26 @@ app.use(bodyParser.urlencoded({
 	extended: true,
 }));
 
-var server = app.listen(3000, function() {
-	var host = server.address().address;
-	var port = server.address().port;
+const server = app.listen(3000, () => {
+	const host = server.address().address;
+	const port = server.address().port;
 
 	winston.info('Manifest is ready and listening on http://%s:%s', host, port);
 });
 
 
 app.use('/static', express.static('static', {}));
-app.get('/*', function(req, res, next) {
-	var route = Object.values(req.params).join('').replace(/\/$/, '');
-	const request = require('request');
+app.get('/*', (req, res, next) => {
+	const route = Object.values(req.params).join('');
+	const template = route.replace(/\/*(\d)*\/*$/, '');
 
 	request('https://community.nodebb.org/api/' + route, { json: true }, (err, response, body) => {
-		if (err) { return console.log(err); }
-		res.render(route, body);
+		if (err) {
+			return console.log(err);
+		}
+		
+		body = response.statusCode === 200 ? body : {};
+		res.render(template, body);
 	});
 
 });

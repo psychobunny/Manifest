@@ -82,4 +82,4 @@ sftp-config.json
 # Manifest
 # =========================
 
-public/bin
+static/bin

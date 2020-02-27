@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 		sass: {
 			development: {
 				files: {
-					"public/bin/manifest.css": "source/manifest.scss"
+					"static/bin/manifest.css": "source/manifest.scss"
 				}
 			}
 		},
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 				}
 			},
 			html: {
-				files: ["public/**/*.html", "public/**/*.js"],
+				files: ["views/**/*.tpl"],
 				options: {
 					livereload: true
 				}

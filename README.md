@@ -1,8 +1,6 @@
 # Manifest - the designer's toolkit
 
-Build design manifests quicker than you ever have before with Automatic LESS compiling and Live Reloading.
-
-More things to come as I go along, feel free to suggest ideas in the issue tracker.
+Build design manifests quicker than you ever have before with Automatic SCSS compiling and Live Reloading.
 
 ## Installation 
 
@@ -24,15 +22,4 @@ grunt
 
 You should get a welcome screen when you navigate to http://localhost:3000/
 
-Feel free to edit anything in the public folder - grunt should automatically update and reload your web browser with changes. Likewise, any changes in the `source/less` directory are automatically compiled and updated for you.
-
-
-## Known Issues
-
-On Linux, if you get this message:
-
-```
-Warning: watch ENOSPC
-```
-
-Try this solution: http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc
+Feel free to edit anything in the static folder - grunt should automatically update and reload your web browser with changes. Likewise, any changes in the `source` directory are automatically compiled and updated for you.

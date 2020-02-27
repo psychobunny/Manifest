@@ -1,6 +1,6 @@
-# Manifest - the designer's toolkit
+# Manifest Design Toolkit
 
-Build design manifests quicker than you ever have before with Automatic SCSS compiling and Live Reloading.
+Prototype NodeBB themes with Automatic SCSS compiling and Live Reloading.
 
 ## Installation 
 

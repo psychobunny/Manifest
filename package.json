@@ -1,7 +1,7 @@
 {
-  "name": "Manifest",
-  "version": "0.0.2",
-  "description": "The designer's toolkit. Build design manifests quicker than you ever have before with Automatic LESS compiling and Live Reloading.",
+  "name": "manifest",
+  "version": "1.0.0",
+  "description": "Prototype NodeBB themes with Automatic SCSS compiling and Live Reloading.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

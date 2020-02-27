@@ -66,7 +66,8 @@ const server = app.listen(3000, () => {
 app.use('/static', express.static('static', {}));
 app.get('/*', (req, res, next) => {
 	const route = Object.values(req.params).join('');
-	const template = route.replace(/\/*(\d)*\/*$/, '');
+	const template = route.split('/')[0];
+
 
 	request('https://community.nodebb.org/api/' + route, { json: true }, (err, response, body) => {
 		if (err) {

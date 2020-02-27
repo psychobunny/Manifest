@@ -19,5 +19,8 @@
     "express": "^4.10.3",
     "winston": "^0.8.3",
     "grunt-contrib-sass": "^1.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1"
   }
 }

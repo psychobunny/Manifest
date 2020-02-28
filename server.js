@@ -68,6 +68,9 @@ app.get('/*', (req, res, next) => {
 	const route = Object.values(req.params).join('');
 	const template = route.split('/')[0];
 
+	if (template.includes('.')) {
+		return next();
+	}
 
 	request('https://community.nodebb.org/api/' + route, { json: true }, (err, response, body) => {
 		if (err) {
